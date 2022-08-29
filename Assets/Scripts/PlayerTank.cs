@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerTank : Tank
-{
-    // Start is called before the first frame update
-    Tank playerTank = new PlayerTank();
-    void Start()
-    {
-        
-    }
-
+{            
     // Update is called once per frame
     void Update()
     {
         Move();
+        RotateBarrel();
+        Shoot();
     }
     public override void Move()
     {
@@ -27,5 +22,36 @@ public class PlayerTank : Tank
         {
             this.transform.Translate(Vector3.right * Time.deltaTime);
         }
+    }
+    public override void RotateBarrel()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            this.transform.Rotate(0, 0, Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            this.transform.Translate(0, 0, Time.deltaTime);
+        }
+    }
+    public override void ExtendBarrel()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            this.transform.Rotate(0, 0, Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            this.transform.Translate(0, 0, Time.deltaTime);
+        }
+    }
+    public override void Shoot()
+    {
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    this.GetComponent()
+        //}
     }
 }

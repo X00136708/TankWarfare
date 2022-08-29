@@ -15,4 +15,7 @@ public abstract class Tank : MonoBehaviour
     {        
     }
     public abstract void Move();
+    public abstract void RotateBarrel();
+    public abstract void ExtendBarrel();
+    public abstract void Shoot();
 }
