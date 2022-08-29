@@ -413,7 +413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272924369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.94, y: -4.21, z: 0.0497803}
+  m_LocalPosition: {x: 6.94, y: -4.04, z: 0.0497803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 597758882}
   - component: {fileID: 597758881}
   m_Layer: 0
-  m_Name: TankBarrel Sprite
+  m_Name: TankBarrelRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -532,15 +532,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597758880}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.148, y: -0.022, z: -0.0497803}
+  m_LocalRotation: {x: -0.03613122, y: -0, z: -0, w: 0.9993471}
+  m_LocalPosition: {x: -3.477, y: -0.094, z: -0.045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2038368474}
   m_Father: {fileID: 272924371}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.141, y: 0, z: 0}
 --- !u!1 &785961292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 1587191584}
   - component: {fileID: 1587191583}
   m_Layer: 0
-  m_Name: TankBody sprite
+  m_Name: TankBodyRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
