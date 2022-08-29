@@ -18,12 +18,12 @@ using UnityEngine;
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            this.transform.Rotate(0, 0, Time.deltaTime*5);
+            this.transform.Rotate(0, 0, Time.deltaTime*10);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            this.transform.Rotate(0, 0, Time.deltaTime*-5);
+            this.transform.Rotate(0, 0, Time.deltaTime*-10);
         }
     }
     public override void ExtendBarrel()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Background_Scroller : MonoBehaviour
 {
-    float scrollSpeed = -2f;
+    float scrollSpeed = -1f;
     Vector2 startPos;
     // Start is called before the first frame update
     void Start()
@@ -14,8 +14,8 @@ public class Background_Scroller : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        float newPos = Mathf.Repeat(Time.time * scrollSpeed, 10);
+    {      
+        float newPos = Mathf.Repeat(Time.time * scrollSpeed, 50);
         transform.position = startPos + Vector2.right * newPos;
     }
 }
