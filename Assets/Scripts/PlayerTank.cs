@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank : MonoBehaviour
+public class PlayerTank : Tank
 {
     // Start is called before the first frame update
-    Vector2 Vec;
+    Tank playerTank = new PlayerTank();
     void Start()
     {
         
@@ -13,6 +13,10 @@ public class Tank : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Move();
+    }
+    public override void Move()
     {
         if (Input.GetKey(KeyCode.A))
         {
