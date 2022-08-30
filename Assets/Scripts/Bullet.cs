@@ -5,30 +5,10 @@ using UnityEngine;
 
     public abstract class Bullet : MonoBehaviour
     {
-    public float speed;
-    public int damage;
-    public string type;    
-
-    protected Bullet(float speed, int damage, string type)
-    {
-        this.speed = speed;
-        this.damage = damage;
-        this.type = type;
-    }
-
-    public string Type
-    {
-        get
-        {
-            return type;
-        }
-        set
-        {
-            type = value;
-        }
-    }        
-        public abstract void Shot();
-        public abstract void Hit();
-
+    public abstract float speed { get; set; }
+    public abstract int damage { get; set; }
+    public abstract string type { get; set; }          
+    public abstract void Shot();
+    public abstract void Hit(Collision2D collision);
     }
 
