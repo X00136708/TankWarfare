@@ -31,14 +31,14 @@ class PlayerDefaultShot : Bullet
     //Initialize the ball with these properties
     public void Init()
     {
-        //Bullet is transparent by default (so that the use can't see it until it is shot). This line sets the transparency of the bullet to 0, so it can be seen
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);               
+        //Bullet is transparent by default (so that the use can't see it until it is shot). This line sets the transparency of the bullet to 0, so it can be seen                      
         //get the point of the Firepoint_player tag, so we can reset the bullet to there later                
-        isInMotion = false;
+        
 
     }
     public override void Shot()
     {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
         initRotation = rb.rotation;
         isInMotion = true;
         rb.gravityScale = 1;
@@ -78,7 +78,7 @@ class PlayerDefaultShot : Bullet
         rb.velocity = Vector3.zero;
         rb.angularVelocity = 0;
         rb.rotation = initRotation;
-        Init();
+        isInMotion = false;       
     }
     
 }
