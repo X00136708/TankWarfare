@@ -8,7 +8,7 @@ class PlayerDefaultShot : Bullet
 {
 
     public override bool isInMotion { get; set; }
-    public override float speed { get; set; } = 100;    
+    public override float power { get; set; } = 30;    
     public override int damage { get; set; } = 100;
     public override string type { get; set; } = "DefaultShot";
     public Vector3 respawnPoint;
@@ -17,10 +17,9 @@ class PlayerDefaultShot : Bullet
     GameObject tankBarrelObj;
     PlayerTankBarrel tankBarrel;
 
-    public float Speed {get {return speed;} set {speed = value;}}
+    public float Power {get {return power;} set {power = value;}}
     public int Damage {get {return damage;} set {damage = value;}}
     public string Type {get {return type;} set {type = value;}}
-
    
 
     void Start()
@@ -55,11 +54,11 @@ class PlayerDefaultShot : Bullet
         //Move the bullet when shot        
         if (rb.angularVelocity >= 0)
         {
-            rb.velocity = transform.right * Speed;
+            rb.velocity = transform.right * Power;
         }
         else
         {
-            rb.velocity = transform.right * -Speed;
+            rb.velocity = transform.right * -Power;
         }
         isInMotion = true;
     }

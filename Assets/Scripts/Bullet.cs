@@ -6,7 +6,7 @@ using UnityEngine;
     public abstract class Bullet : MonoBehaviour
     {
     public abstract bool isInMotion { get; set; }
-    public abstract float speed { get; set; }
+    public abstract float power { get; set; }
     public abstract int damage { get; set; }
     public abstract string type { get; set; }          
     public abstract void Shot();
