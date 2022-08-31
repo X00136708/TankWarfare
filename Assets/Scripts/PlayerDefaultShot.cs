@@ -16,15 +16,13 @@ class PlayerDefaultShot : Bullet
     public Rigidbody2D rb;
     GameObject tankBarrelObj;
     PlayerTankBarrel tankBarrel;
-    public float Speed
-    {
-        get
-        {
-            return speed;
 
-        }
-        set { speed = value; }
-    }
+    public float Speed {get {return speed;} set {speed = value;}}
+    public int Damage {get {return damage;} set {damage = value;}}
+    public string Type {get {return type;} set {type = value;}}
+
+   
+
     void Start()
     {
         tankBarrelObj = GameObject.Find("TankBarrelLeft");
