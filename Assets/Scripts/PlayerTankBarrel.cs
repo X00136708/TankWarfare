@@ -6,7 +6,7 @@ using UnityEngine;
     class PlayerTankBarrel : TankBarrel
     {
     GameObject bulletObj;
-    PlayerDefaultShot bullet;
+    PlayerDefaultShot bullet;    
     void Start()
     {
         bulletObj = GameObject.Find("Bullet");

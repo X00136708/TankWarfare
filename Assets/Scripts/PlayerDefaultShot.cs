@@ -13,15 +13,20 @@ class PlayerDefaultShot : Bullet
     public override string type { get; set; } = "DefaultShot";
     public Vector3 respawnPoint;
     public float initRotation;
-    public Rigidbody2D rb;    
+    public Rigidbody2D rb;
+    GameObject tankBarrelObj;
+    PlayerTankBarrel tankBarrel;
     
     void Start()
-    {        
+    {
+        tankBarrelObj = GameObject.Find("TankBarrelLeft");
+        tankBarrel = tankBarrelObj.GetComponent<PlayerTankBarrel>();
         Init();
     }
 
     void Update()
     {
+        rb.rotation = tankBarrel.transform.localEulerAngles.z;
         if (Input.GetKey(KeyCode.Space))
         {            
             if(!isInMotion)
@@ -39,8 +44,7 @@ class PlayerDefaultShot : Bullet
     public override void Shot()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
-        initRotation = rb.rotation;
-        isInMotion = true;
+        initRotation = tankBarrel.transform.localEulerAngles.z;        
         rb.gravityScale = 1;
         //Move the bullet when shot        
         if (rb.angularVelocity >= 0)
@@ -51,8 +55,8 @@ class PlayerDefaultShot : Bullet
         {
             rb.velocity = transform.right * -this.speed;
         }
-               
-      }
+        isInMotion = true;
+    }
     //First method to be called when this object is hit
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -78,8 +82,7 @@ class PlayerDefaultShot : Bullet
         rb.velocity = Vector3.zero;
         rb.angularVelocity = 0;
         rb.rotation = initRotation;
-        isInMotion = false;       
-    }
-    
+        isInMotion = false;        
+    }     
 }
 
