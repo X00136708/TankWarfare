@@ -5,9 +5,12 @@ using UnityEngine;
 
     class PlayerTankBarrel : TankBarrel
     {
+    GameObject bulletObj;
+    PlayerDefaultShot bullet;
     void Start()
     {
-        
+        bulletObj = GameObject.Find("Bullet");
+        bullet = bulletObj.GetComponent<PlayerDefaultShot>();
     }
     void Update()
     {
@@ -18,12 +21,14 @@ using UnityEngine;
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            this.transform.Rotate(0, 0, Time.deltaTime*10);
+            if (!bullet.isInMotion)
+                this.transform.Rotate(0, 0, Time.deltaTime*50);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            this.transform.Rotate(0, 0, Time.deltaTime*-10);
+            if (!bullet.isInMotion)
+                this.transform.Rotate(0, 0, Time.deltaTime*-50);
         }
     }
     public override void ExtendBarrel()

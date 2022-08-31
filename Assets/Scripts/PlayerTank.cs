@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerTank : Tank
-{            
+{
     // Update is called once per frame
     void Update()
-    {
+    {        
         Move();       
         Shoot();
     }
     public override void Move()
     {
         if (Input.GetKey(KeyCode.A))
-        {
-            this.transform.Translate(Vector3.left * Time.deltaTime);
+        {            
+                this.transform.Translate(Vector3.left * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.D))
-        {
-            this.transform.Translate(Vector3.right * Time.deltaTime);
+        {           
+                this.transform.Translate(Vector3.right * Time.deltaTime);
         }
     }
     
