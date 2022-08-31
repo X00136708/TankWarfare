@@ -33,15 +33,15 @@ using UnityEngine;
     }
     public override void ExtendBarrel()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            this.transform.Rotate(0, 0, Time.deltaTime);
-        }
+        //if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    this.transform.Rotate(0, 0, Time.deltaTime);
+        //}
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            this.transform.Translate(0, 0, Time.deltaTime);
-        }
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    this.transform.Translate(0, 0, Time.deltaTime);
+        //}
     }
 }
 

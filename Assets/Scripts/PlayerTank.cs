@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PlayerTank : Tank
 {
-    // Update is called once per frame
+    GameObject bulletObj;
+    PlayerDefaultShot bullet;
+    private void Start()
+    {
+        bulletObj = GameObject.Find("Bullet");
+        bullet = bulletObj.GetComponent<PlayerDefaultShot>();
+    }
     void Update()
     {        
         Move();       
@@ -13,12 +19,14 @@ public class PlayerTank : Tank
     public override void Move()
     {
         if (Input.GetKey(KeyCode.A))
-        {            
+        {
+            if(!bullet.isInMotion)
                 this.transform.Translate(Vector3.left * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.D))
-        {           
+        {
+            if (!bullet.isInMotion)
                 this.transform.Translate(Vector3.right * Time.deltaTime);
         }
     }

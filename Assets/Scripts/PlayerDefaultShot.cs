@@ -14,21 +14,16 @@ class PlayerDefaultShot : Bullet
     public Vector3 respawnPoint;
     public float initRotation;
     public Rigidbody2D rb;    
-
-    public PlayerDefaultShot()
-    {
-        isInMotion = true;
-    }
+    
     void Start()
-    {
-
+    {        
+        Init();
     }
 
     void Update()
     {
         if (Input.GetKey(KeyCode.Space))
-        {
-            Init(); 
+        {            
             if(!isInMotion)
             Shot();
         }
@@ -37,19 +32,27 @@ class PlayerDefaultShot : Bullet
     public void Init()
     {
         //Bullet is transparent by default (so that the use can't see it until it is shot). This line sets the transparency of the bullet to 0, so it can be seen
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
-        //Initialize gravity so bullet can simulate falling. Doing this in unity will make it fall immidietely when game is loaded
-        rb.gravityScale = 1;
-        //get the point of the Firepoint_player tag, so we can reset the bullet to there later
-        respawnPoint = GameObject.Find("Firepoint_player").transform.position;
-        initRotation = rb.rotation;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);               
+        //get the point of the Firepoint_player tag, so we can reset the bullet to there later                
+        isInMotion = false;
+
     }
     public override void Shot()
-    {               
-        //Move the bullet when shot
-        rb.velocity = transform.right * this.speed;
-        isInMotion = true;        
-    }
+    {
+        initRotation = rb.rotation;
+        isInMotion = true;
+        rb.gravityScale = 1;
+        //Move the bullet when shot        
+        if (rb.angularVelocity >= 0)
+        {
+            rb.velocity = transform.right * this.speed;
+        }
+        else
+        {
+            rb.velocity = transform.right * -this.speed;
+        }
+               
+      }
     //First method to be called when this object is hit
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -65,18 +68,17 @@ class PlayerDefaultShot : Bullet
     }
     public void ResetShot()
     {
+        respawnPoint = GameObject.Find("Firepoint_player").transform.position;
         //Make bullet Transparent again, so it's not seen on the front of the tank
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        //Stop the bullet from moving when it's reset to the front of the tank
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = 0;
-        rb.inertia = 0;
-        rb.rotation = initRotation;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);       
         //Stop the bullet from falling when it's reset
         rb.gravityScale = 0;
         //Spawn the bullet back on the front of the tank when reset
-        rb.transform.position = respawnPoint;
-        isInMotion = false;
+        rb.transform.position = respawnPoint;        
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0;
+        rb.rotation = initRotation;
+        Init();
     }
     
 }
