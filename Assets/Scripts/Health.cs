@@ -16,19 +16,5 @@ public class Health : MonoBehaviour
         CurrentHealth = MaxHealth;
         healthBar.setMaxHealth(MaxHealth);
     }
-    public void TakeDamage(int damage)
-    {//thi is how the olayer takes damage
-        CurrentHealth -= damage;
-        //this links the players health to the health bar.
-        healthBar.setHealth(CurrentHealth);
-        if (CurrentHealth <= 0)
-        {//checks if the players health is 0, if true then it kills the player.
-            Die();
-        }
-    }
-    public void Die()
-    {//kills the player 
-        Debug.Log("die");
-        Destroy(gameObject);
-    }
+    
 }
