@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
         healthBar.setMaxHealth(MaxHealth);
     }
     public void TakeDamage(int damage)
-    {//thi is how the olayer takes damage
+    {//this is how the player takes damage
         CurrentHealth -= damage;
         //this links the players health to the health bar.
         healthBar.setHealth(CurrentHealth);
