@@ -16,4 +16,7 @@ public abstract class Tank : MonoBehaviour
     }
     public abstract void Move();    
     public abstract void Shoot();
+    public abstract void TakeDamage(int damage);
+    public abstract void Die();
+
 }

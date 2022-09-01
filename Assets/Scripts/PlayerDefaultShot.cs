@@ -11,32 +11,29 @@ class PlayerDefaultShot : Bullet
     public override float power { get; set; } = 30;    
     public override int damage { get; set; } = 100;
     public override string type { get; set; } = "DefaultShot";
-    public Vector3 respawnPoint;
-    public float initRotation;
+    public override float angularVelocity { get; set; }
+    public override Vector2 velocity { get; set; }
+    public override float initRotation{ get; set; }
+
+    public Vector3 respawnPoint;  
     public Rigidbody2D rb;
-    GameObject tankBarrelObj;
-    PlayerTankBarrel tankBarrel;
+    
 
     public float Power {get {return power;} set {power = value;}}
     public int Damage {get {return damage;} set {damage = value;}}
     public string Type {get {return type;} set {type = value;}}
+    public float AngularVelocity { get {return angularVelocity;} set { angularVelocity = value;}}
+    public Vector2 Velocity { get {return velocity;} set { velocity = value;}}
+    public float InitRotation { get {return initRotation;} set { initRotation = value;}}
    
 
     void Start()
-    {
-        tankBarrelObj = GameObject.Find("TankBarrelLeft");
-        tankBarrel = tankBarrelObj.GetComponent<PlayerTankBarrel>();
+    {        
         Init();
     }
 
     void Update()
-    {
-        rb.rotation = tankBarrel.transform.localEulerAngles.z;
-        if (Input.GetKey(KeyCode.Space))
-        {            
-            if(!isInMotion)
-            Shot();
-        }
+    {                                        
     }
     //Initialize the ball with these properties
     public void Init()
@@ -48,19 +45,8 @@ class PlayerDefaultShot : Bullet
     }
     public override void Shot()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
-        initRotation = tankBarrel.transform.localEulerAngles.z;        
-        rb.gravityScale = 1;
-        //Move the bullet when shot        
-        if (rb.angularVelocity >= 0)
-        {
-            rb.velocity = transform.right * Power;
-        }
-        else
-        {
-            rb.velocity = transform.right * -Power;
-        }
-        isInMotion = true;
+        
+       //Move the bullet when shot                
     }
     //First method to be called when this object is hit
     private void OnCollisionEnter2D(Collision2D collision)
@@ -88,6 +74,10 @@ class PlayerDefaultShot : Bullet
         rb.angularVelocity = 0;
         rb.rotation = initRotation;
         isInMotion = false;        
-    }     
+    }
+    public override void SetRBSettings(Bullet b)
+    {
+        rb.velocity = b.velocity;        
+    }
 }
 

@@ -6,15 +6,24 @@ public class PlayerTank : Tank
 {
     GameObject bulletObj;
     PlayerDefaultShot bullet;
+    GameObject tankBarrelObj;
+    PlayerTankBarrel tankBarrel;
     private void Start()
     {
         bulletObj = GameObject.Find("Bullet");
         bullet = bulletObj.GetComponent<PlayerDefaultShot>();
+        tankBarrelObj = GameObject.Find("TankBarrelLeft");
+        tankBarrel = tankBarrelObj.GetComponent<PlayerTankBarrel>();
     }
     void Update()
-    {        
-        Move();       
-        Shoot();
+    {
+        bullet.rb.rotation = tankBarrel.transform.localEulerAngles.z;
+        Move();
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (!bullet.isInMotion)
+                Shoot();
+        }
     }
     public override void Move()
     {
@@ -33,9 +42,26 @@ public class PlayerTank : Tank
     
     public override void Shoot()
     {
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    this.GetComponent()
+        bullet.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
+        bullet.InitRotation = tankBarrel.transform.localEulerAngles.z;
+        bullet.rb.gravityScale = 1;       
+        bullet.Velocity = bullet.transform.right * bullet.Power;
+        bullet.SetRBSettings(bullet);
+        bullet.isInMotion = true;
+    }
+    public override void TakeDamage(int damage)
+    {//this is how the player takes damage
+        //CurrentHealth -= damage;
+        ////this links the players health to the health bar.
+        //healthBar.setHealth(CurrentHealth);
+        //if (CurrentHealth <= 0)
+        //{//checks if the players health is 0, if true then it kills the player.
+        //    Die();
         //}
     }
-}
+    public override void Die()
+    {         
+        Destroy(gameObject);
+    }
+    }
+
