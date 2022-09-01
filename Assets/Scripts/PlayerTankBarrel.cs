@@ -6,11 +6,15 @@ using UnityEngine;
     class PlayerTankBarrel : TankBarrel
     {
     GameObject bulletObj;
-    PlayerDefaultShot bullet;    
+    Bullet bullet; 
+    GameObject tankBarrelExtendedObj;
+    //TankBarrelExtended tankBarrelExtended;    
     void Start()
     {
         bulletObj = GameObject.Find("Bullet");
-        bullet = bulletObj.GetComponent<PlayerDefaultShot>();
+        bullet = bulletObj.GetComponent<Bullet>();
+        tankBarrelExtendedObj = GameObject.Find("TankBarrelExtendedLeft");
+//        tankBarrelExtended = tankBarrelExtendedObj.GetComponent<TankBarrelExtended>();
     }
     void Update()
     {
@@ -33,15 +37,14 @@ using UnityEngine;
     }
     public override void ExtendBarrel()
     {
-        //if (Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    this.transform.Rotate(0, 0, Time.deltaTime);
-        //}
-
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    this.transform.Translate(0, 0, Time.deltaTime);
-        //}
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            tankBarrelExtendedObj.transform.Translate(new Vector3(1.204f, 0.131f, -0.0065f) * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            tankBarrelExtendedObj.transform.Translate(new Vector3(-0.901f, -0.099f, -0.0065f) * Time.deltaTime);
+        }
     }
 }
 

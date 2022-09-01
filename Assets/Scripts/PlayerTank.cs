@@ -5,19 +5,20 @@ using UnityEngine;
 public class PlayerTank : Tank
 {
     GameObject bulletObj;
-    PlayerDefaultShot bullet;
+    Bullet bullet;
     GameObject tankBarrelObj;
     PlayerTankBarrel tankBarrel;
     private void Start()
     {
         bulletObj = GameObject.Find("Bullet");
-        bullet = bulletObj.GetComponent<PlayerDefaultShot>();
+        bullet = bulletObj.GetComponent<Bullet>();
         tankBarrelObj = GameObject.Find("TankBarrelLeft");
         tankBarrel = tankBarrelObj.GetComponent<PlayerTankBarrel>();
     }
     void Update()
     {
-        bullet.rb.rotation = tankBarrel.transform.localEulerAngles.z;
+        if(bullet != null)
+            //bullet.rb.rotation = tankBarrel.transform.localEulerAngles.z;
         Move();
         if (Input.GetKey(KeyCode.Space))
         {
@@ -43,9 +44,9 @@ public class PlayerTank : Tank
     public override void Shoot()
     {
         bullet.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
-        bullet.InitRotation = tankBarrel.transform.localEulerAngles.z;
+        bullet.initRotation = tankBarrel.transform.localEulerAngles.z;
         bullet.rb.gravityScale = 1;       
-        bullet.Velocity = bullet.transform.right * bullet.Power;
+        bullet.velocity = bullet.transform.right * bullet.power;
         bullet.SetRBSettings(bullet);
         bullet.isInMotion = true;
     }

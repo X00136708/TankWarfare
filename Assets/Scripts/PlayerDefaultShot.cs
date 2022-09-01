@@ -13,42 +13,16 @@ class PlayerDefaultShot : Bullet
     public override string type { get; set; } = "DefaultShot";
     public override float angularVelocity { get; set; }
     public override Vector2 velocity { get; set; }
-    public override float initRotation{ get; set; }
+    public override float initRotation{ get; set; }    
+    public Vector3 respawnPoint;
 
-    public Vector3 respawnPoint;  
-    public Rigidbody2D rb;
-    
+    public float Power { get { return power; } set { power = value; } }
+    public int Damage { get { return damage; } set { damage = value; } }
+    public string Type { get { return type; } set { type = value; } }
+    public float AngularVelocity { get { return angularVelocity; } set { angularVelocity = value; } }
+    public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
+    public float InitRotation { get { return initRotation; } set { initRotation = value; } }
 
-    public float Power {get {return power;} set {power = value;}}
-    public int Damage {get {return damage;} set {damage = value;}}
-    public string Type {get {return type;} set {type = value;}}
-    public float AngularVelocity { get {return angularVelocity;} set { angularVelocity = value;}}
-    public Vector2 Velocity { get {return velocity;} set { velocity = value;}}
-    public float InitRotation { get {return initRotation;} set { initRotation = value;}}
-   
-
-    void Start()
-    {        
-        Init();
-    }
-
-    void Update()
-    {                                        
-    }
-    //Initialize the ball with these properties
-    public void Init()
-    {
-        //Bullet is transparent by default (so that the use can't see it until it is shot). This line sets the transparency of the bullet to 0, so it can be seen                      
-        //get the point of the Firepoint_player tag, so we can reset the bullet to there later                
-        
-
-    }
-    public override void Shot()
-    {
-        
-       //Move the bullet when shot                
-    }
-    //First method to be called when this object is hit
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Call our own Hit method to do it's own thing. Not needed, but just sounds better. 
