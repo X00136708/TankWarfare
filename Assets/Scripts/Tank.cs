@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Tank : MonoBehaviour
-{       
-    // Start is called before the first frame update   
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {        
-    }
+{
+    public abstract Health tankHealth { get; set; }
     public abstract void Move();    
     public abstract void Shoot();
     public abstract void TakeDamage(int damage);

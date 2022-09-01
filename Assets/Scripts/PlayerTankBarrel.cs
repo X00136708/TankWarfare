@@ -8,42 +8,50 @@ using UnityEngine;
     GameObject bulletObj;
     Bullet bullet; 
     GameObject tankBarrelExtendedObj;
+    Vector3 extendedPosition;
+    Vector3 retractedPosition;
     //TankBarrelExtended tankBarrelExtended;    
     void Start()
     {
         bulletObj = GameObject.Find("Bullet");
         bullet = bulletObj.GetComponent<Bullet>();
         tankBarrelExtendedObj = GameObject.Find("TankBarrelExtendedLeft");
-//        tankBarrelExtended = tankBarrelExtendedObj.GetComponent<TankBarrelExtended>();
+        extendedPosition = tankBarrelExtendedObj.transform.localPosition;
+        retractedPosition = new Vector3(.7f, .08f, 0f);
+      
     }
     void Update()
     {
-        RotateBarrel();
-        ExtendBarrel();
+        if (!bullet.isInMotion)
+        {
+            RotateBarrel();
+            ExtendBarrel();
+        }
     }
-    public override void RotateBarrel()
+    protected override void RotateBarrel()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            if (!bullet.isInMotion)
-                this.transform.Rotate(0, 0, Time.deltaTime*50);
+        {     
+            this.transform.Rotate(0, 0, Time.deltaTime*50);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
-        {
-            if (!bullet.isInMotion)
-                this.transform.Rotate(0, 0, Time.deltaTime*-50);
+        {           
+            this.transform.Rotate(0, 0, Time.deltaTime*-50);
         }
     }
-    public override void ExtendBarrel()
+    protected override void ExtendBarrel()
     {
+        
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            tankBarrelExtendedObj.transform.Translate(new Vector3(1.204f, 0.131f, -0.0065f) * Time.deltaTime);
+            if(!(Vector3.Distance(tankBarrelExtendedObj.transform.localPosition, extendedPosition) < 0.1f))
+                tankBarrelExtendedObj.transform.Translate(new Vector3(1.218015f, 0.1071854f, 0f) * Time.deltaTime * .5f);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            tankBarrelExtendedObj.transform.Translate(new Vector3(-0.901f, -0.099f, -0.0065f) * Time.deltaTime);
+            if (!(Vector3.Distance(tankBarrelExtendedObj.transform.localPosition, retractedPosition) < 0.1f))
+                tankBarrelExtendedObj.transform.Translate(new Vector3(-1.218015f, -0.1071854f, 0f) * Time.deltaTime * .5f);
         }
     }
 }

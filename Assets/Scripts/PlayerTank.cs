@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class PlayerTank : Tank
 {
-    GameObject bulletObj;
-    Bullet bullet;
-    GameObject tankBarrelObj;
+    GameObject currentObj;
+    Bullet bullet;  
     PlayerTankBarrel tankBarrel;
+    HealthBar healthBar;
+    public const int MaxHealth = 100;
+    public int CurrentHealth;
+    public override Health tankHealth { get; set; }
+   
+      
+    
     private void Start()
-    {
-        bulletObj = GameObject.Find("Bullet");
-        bullet = bulletObj.GetComponent<Bullet>();
-        tankBarrelObj = GameObject.Find("TankBarrelLeft");
-        tankBarrel = tankBarrelObj.GetComponent<PlayerTankBarrel>();
+    {        
+        currentObj = GameObject.Find("Bullet");
+        bullet = currentObj.GetComponent<Bullet>();
+        currentObj = GameObject.Find("TankBarrelLeft");
+        tankBarrel = currentObj.GetComponent<PlayerTankBarrel>();
+        currentObj = GameObject.Find("HealthBar");
+        healthBar = currentObj.GetComponent<HealthBar>();
+        CurrentHealth = MaxHealth;
+        healthBar.setMaxHealth(50);
     }
+
     void Update()
     {
         if(bullet != null)
@@ -50,15 +61,16 @@ public class PlayerTank : Tank
         bullet.SetRBSettings(bullet);
         bullet.isInMotion = true;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider == GameObject.Find("Bullet"))
+        {
+
+        }
+    }
     public override void TakeDamage(int damage)
-    {//this is how the player takes damage
-        //CurrentHealth -= damage;
-        ////this links the players health to the health bar.
-        //healthBar.setHealth(CurrentHealth);
-        //if (CurrentHealth <= 0)
-        //{//checks if the players health is 0, if true then it kills the player.
-        //    Die();
-        //}
+    {
+        
     }
     public override void Die()
     {         

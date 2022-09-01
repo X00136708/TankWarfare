@@ -14,14 +14,7 @@ class PlayerDefaultShot : Bullet
     public override float angularVelocity { get; set; }
     public override Vector2 velocity { get; set; }
     public override float initRotation{ get; set; }    
-    public Vector3 respawnPoint;
-
-    public float Power { get { return power; } set { power = value; } }
-    public int Damage { get { return damage; } set { damage = value; } }
-    public string Type { get { return type; } set { type = value; } }
-    public float AngularVelocity { get { return angularVelocity; } set { angularVelocity = value; } }
-    public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
-    public float InitRotation { get { return initRotation; } set { initRotation = value; } }
+    public Vector3 respawnPoint;    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -29,9 +22,7 @@ class PlayerDefaultShot : Bullet
         Hit(collision);
     }
     public override void Hit(Collision2D collision)
-    {
-        //do something with the collision that happened. Did it collide with ground or with another tank?
-
+    {        
         //Reset the bullet back to the front of the tank, to be shot again
         ResetShot();        
     }
