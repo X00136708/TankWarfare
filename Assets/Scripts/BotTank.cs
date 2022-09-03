@@ -13,7 +13,7 @@ class BotTank : Tank
 
     private void Start()
     {
-        maxHealth = 100;
+        maxHealth = 40;
         currentObj = GameObject.Find("Bullet");
         bullet = currentObj.GetComponent<Bullet>();
         currentObj = GameObject.Find("TankBarrelLeft");
