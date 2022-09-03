@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class PlayerTank : Tank
 {
-    GameObject currentObj;
-    Bullet bullet;  
-    PlayerTankBarrel tankBarrel;
-    HealthBar healthBar;
-    public const int MaxHealth = 100;
-    public int CurrentHealth;
-    public override Health tankHealth { get; set; }
-   
-      
+    GameObject currentObj;    
+    PlayerTankBarrel tankBarrel;               
     
     private void Start()
-    {        
+    {       
+        maxHealth = 100;
         currentObj = GameObject.Find("Bullet");
         bullet = currentObj.GetComponent<Bullet>();
         currentObj = GameObject.Find("TankBarrelLeft");
         tankBarrel = currentObj.GetComponent<PlayerTankBarrel>();
         currentObj = GameObject.Find("HealthBar");
         healthBar = currentObj.GetComponent<HealthBar>();
-        CurrentHealth = MaxHealth;
-        healthBar.setMaxHealth(50);
+        CurrentHealth = maxHealth;
+        healthBar.setMaxHealth(maxHealth);
     }
 
     void Update()
@@ -67,11 +61,7 @@ public class PlayerTank : Tank
         {
 
         }
-    }
-    public override void TakeDamage(int damage)
-    {
-        
-    }
+    }    
     public override void Die()
     {         
         Destroy(gameObject);

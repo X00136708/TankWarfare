@@ -9,7 +9,7 @@ class PlayerDefaultShot : Bullet
 
     public override bool isInMotion { get; set; }
     public override float power { get; set; } = 30;    
-    public override int damage { get; set; } = 100;
+    public override int damage { get; set; } = 10;
     public override string type { get; set; } = "DefaultShot";
     public override float angularVelocity { get; set; }
     public override Vector2 velocity { get; set; }

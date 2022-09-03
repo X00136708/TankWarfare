@@ -11,8 +11,9 @@ public class HealthBar : MonoBehaviour
         slider.maxValue = health;
         slider.value = health;
     }
-    public void setHealth(int health)
-    {//this sets the player health to 100 every restart
+    public int setHealth(int health)
+    {
         slider.value = health;
+        return health;
     }
 }
