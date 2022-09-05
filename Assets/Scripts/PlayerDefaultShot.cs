@@ -15,7 +15,7 @@ class PlayerDefaultShot : Bullet
     public override Vector2 velocity { get; set; }
     public override float initRotation{ get; set; }    
     public Vector3 respawnPoint;    
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Call our own Hit method to do it's own thing. Not needed, but just sounds better. 

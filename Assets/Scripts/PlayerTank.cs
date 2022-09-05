@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Path;
 using UnityEngine;
 
 public class PlayerTank : Tank
 {
     GameObject currentObj;    
-    PlayerTankBarrel tankBarrel;               
-    
+    PlayerTankBarrel tankBarrel;    
+
     private void Start()
     {       
         maxHealth = 100;
@@ -47,11 +48,11 @@ public class PlayerTank : Tank
     }
     
     public override void Shoot()
-    {
+    {      
         bullet.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 255);
         bullet.initRotation = tankBarrel.transform.localEulerAngles.z;
         bullet.rb.gravityScale = 1;       
-        bullet.velocity = bullet.transform.right * bullet.power;
+        bullet.velocity = bullet.transform.right * (bullet.power * tankBarrel.tankBarrelEulerAxisX);
         bullet.SetRBSettings(bullet);
         bullet.isInMotion = true;
     }
@@ -59,7 +60,8 @@ public class PlayerTank : Tank
     {
         if(collision.collider == GameObject.Find("Bullet"))
         {
-
+            TakeDamage(this.gameObject, bullet.damage);
+            healthBar.setHealth(30);
         }
     }    
     public override void Die()
