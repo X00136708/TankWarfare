@@ -19,11 +19,9 @@ class BotTank : Tank
         currentObj = GameObject.Find("TankBarrelLeft");
         tankBarrel = currentObj.GetComponent<PlayerTankBarrel>();
         currentObj = GameObject.Find("HealthBar");
-        healthBar = currentObj.GetComponent<HealthBar>();
+        //healthBar = currentObj.GetComponent<HealthBar>();
         CurrentHealth = maxHealth;
         currentObj = GameObject.Find("Health");
-        health = currentObj.GetComponent<Health>();
-        healthBar.setMaxHealth(maxHealth);
     }
     public override void Die()
     {
@@ -44,8 +42,7 @@ class BotTank : Tank
     {
         if(collision.collider.tag.Equals("Bullet"))
         {
-            TakeDamage(this.gameObject, bullet.damage);
-            healthBar.setHealth(30);
+            TakeDamage(this.gameObject, bullet.damage);            
             
         }
     }

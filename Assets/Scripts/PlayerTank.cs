@@ -16,9 +16,8 @@ public class PlayerTank : Tank
         currentObj = GameObject.Find("TankBarrelLeft");
         tankBarrel = currentObj.GetComponent<PlayerTankBarrel>();
         currentObj = GameObject.Find("HealthBar");
-        healthBar = currentObj.GetComponent<HealthBar>();
-        CurrentHealth = maxHealth;
-        healthBar.setMaxHealth(maxHealth);
+        //healthBar = currentObj.GetComponent<HealthBar>();
+        CurrentHealth = maxHealth;        
     }
 
     void Update()

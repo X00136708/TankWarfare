@@ -5,9 +5,14 @@ using UnityEngine;
 public abstract class Tank : MonoBehaviour
 {
     public Bullet bullet { get; set; }
+    public GameObject healthBarObj;
     public HealthBar healthBar;
     public int maxHealth { get; set; }
     private int currentHealth;
+    public void Start()
+    {
+       //healthBar = healthBarObj.GetComponent<HealthBar>();
+    }
     public int CurrentHealth
     {
         get
@@ -16,7 +21,10 @@ public abstract class Tank : MonoBehaviour
         }
         set
         {
-            currentHealth = healthBar.setHealth(value);
+            if (healthBar != null)
+            {
+                currentHealth = healthBar.setHealth(value);
+            }
         }
     }
     public abstract void Move();
@@ -25,7 +33,8 @@ public abstract class Tank : MonoBehaviour
     {
         if (!(maxHealth <= 0))
         {
-            CurrentHealth -= damage;
+            if(CurrentHealth != null)
+                CurrentHealth -= damage;
         }
         else
         {
