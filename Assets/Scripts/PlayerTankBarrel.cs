@@ -48,7 +48,7 @@ using UnityEngine;
         
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            if (!(Vector3.Distance(tankBarrelExtendedObj.transform.localPosition, extendedPosition) < 0.1f))
+            if (!(Vector3.Distance(tankBarrelExtendedObj.transform.localPosition, extendedPosition) < 0.05f))
             {
                 tankBarrelExtendedObj.transform.Translate(new Vector3(1.218015f, 0.1071854f, 0f) * Time.deltaTime * .5f);
                 this.tankBarrelEulerAxisX = tankBarrelExtendedObj.transform.localPosition.x;
