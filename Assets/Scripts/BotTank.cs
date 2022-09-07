@@ -10,8 +10,9 @@ class BotTank : Tank
     GameObject currentObj;    
     PlayerTankBarrel tankBarrel;
     Health health;
+    HealthBar Bar;//this is a change i made
 
-    private void Start()
+    private void Start()//not sure why this broke or how to fix it 
     {
         maxHealth = 40;
         currentObj = GameObject.Find("Bullet");
@@ -21,6 +22,7 @@ class BotTank : Tank
         currentObj = GameObject.Find("HealthBar");
         //healthBar = currentObj.GetComponent<HealthBar>();
         CurrentHealth = maxHealth;
+        Bar.setMaxHealth(maxHealth);//this is a change i made
         currentObj = GameObject.Find("Health");
     }
     public override void Die()
@@ -42,8 +44,8 @@ class BotTank : Tank
     {
         if(collision.collider.tag.Equals("Bullet"))
         {
-            TakeDamage(this.gameObject, bullet.damage);            
-            
+            TakeDamage(this.gameObject, bullet.damage);
+            CurrentHealth -= bullet.damage;//this is a change i made
         }
     }
 }
