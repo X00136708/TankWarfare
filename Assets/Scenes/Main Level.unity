@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 272924374}
   m_Layer: 0
   m_Name: Bot Tank
-  m_TagString: Untagged
+  m_TagString: BotTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -739,6 +739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarObj: {fileID: 0}
   healthBar: {fileID: 341522663}
+  botsTurn: 0
 --- !u!1 &310398678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,7 +2476,7 @@ GameObject:
   - component: {fileID: 1275148881}
   m_Layer: 0
   m_Name: Player Tank
-  m_TagString: Untagged
+  m_TagString: PlayerTank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2494,6 +2495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarObj: {fileID: 0}
   healthBar: {fileID: 0}
+  botsTurn: 0
 --- !u!4 &1275148880
 Transform:
   m_ObjectHideFlags: 0

@@ -15,8 +15,7 @@ public class PlayerTank : Tank
         bullet = currentObj.GetComponent<Bullet>();
         currentObj = GameObject.Find("TankBarrelLeft");
         tankBarrel = currentObj.GetComponent<PlayerTankBarrel>();
-        currentObj = GameObject.Find("HealthBar");
-        //healthBar = currentObj.GetComponent<HealthBar>();
+        currentObj = GameObject.Find("HealthBar");        
         CurrentHealth = maxHealth;        
     }
 
@@ -53,14 +52,14 @@ public class PlayerTank : Tank
         bullet.rb.gravityScale = 1;       
         bullet.velocity = bullet.transform.right * (bullet.power * tankBarrel.tankBarrelEulerAxisX);
         bullet.SetRBSettings(bullet);
-        bullet.isInMotion = true;
+        bullet.isInMotion = true;        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider == GameObject.Find("Bullet"))
         {
             TakeDamage(this.gameObject, bullet.damage);
-            healthBar.setHealth(30);
+            healthBar.setHealth(30);            
         }
     }    
     public override void Die()

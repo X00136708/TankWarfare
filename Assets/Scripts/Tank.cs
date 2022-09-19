@@ -8,12 +8,10 @@ public abstract class Tank : MonoBehaviour
     public GameObject healthBarObj;
     public HealthBar healthBar;
     public int maxHealth { get; set; }
+    public bool botsTurn;
     private int currentHealth;
-    public void Start()
-    {
-       //healthBar = healthBarObj.GetComponent<HealthBar>();
-    }
-    public int CurrentHealth
+            
+    public int CurrentHealth    
     {
         get
         {
@@ -31,9 +29,8 @@ public abstract class Tank : MonoBehaviour
     public abstract void Shoot();
     public void TakeDamage(GameObject obj, int damage)
     {
-        if (!(maxHealth <= 0))
-        {
-            if(CurrentHealth != null)
+        if (!(maxHealth < 0))
+        {            
                 CurrentHealth -= damage;
         }
         else
@@ -42,5 +39,19 @@ public abstract class Tank : MonoBehaviour
         }
     }
     public abstract void Die();
-
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag.Equals("Bullet"))
+        {
+            if (collision.otherCollider.tag.Equals("PlayerTank"))
+            {
+                botsTurn = false;
+            }
+            else if (collision.otherCollider.tag.Equals("BotTank"))
+            {
+                botsTurn = true;
+            }
+            TakeDamage(this.gameObject, bullet.damage);
+        }
+    }
 }
