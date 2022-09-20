@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
-public abstract class Tank : MonoBehaviour
+public abstract class Tank : GenericMethods
 {
     public Bullet bullet { get; set; }
     public GameObject healthBarObj;
     public HealthBar healthBar;
+    public Random rand;
     public int maxHealth { get; set; }
-    public bool botsTurn;
-    private int currentHealth;
-            
+    public bool botsTurnMove;
+    public bool botsTurnShoot;
+    private int currentHealth;    
+
     public int CurrentHealth    
     {
         get
@@ -26,7 +29,7 @@ public abstract class Tank : MonoBehaviour
         }
     }
     public abstract void Move();
-    public abstract void Shoot();
+    public abstract void Shoot();    
     public void TakeDamage(GameObject obj, int damage)
     {
         if (!(maxHealth < 0))
@@ -45,11 +48,11 @@ public abstract class Tank : MonoBehaviour
         {
             if (collision.otherCollider.tag.Equals("PlayerTank"))
             {
-                botsTurn = false;
+                botsTurnMove = false;
             }
             else if (collision.otherCollider.tag.Equals("BotTank"))
             {
-                botsTurn = true;
+                botsTurnMove = true;
             }
             TakeDamage(this.gameObject, bullet.damage);
         }

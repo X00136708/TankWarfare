@@ -5,16 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using Random = System.Random;
 
 class BotTank : Tank
 {
     GameObject currentObj;    
-    PlayerTankBarrel tankBarrel;    
-    HealthBar Bar;//this is a change i made
-    Random rand;
-    Vector3 directionTime;
-    int randNumber;
+    BotTankBarrel tankBarrel;    
+    HealthBar Bar;//this is a change i made    
+    Vector3 directionTime;    
     float Sec;
 
     private void Start()//not sure why this broke or how to fix it 
@@ -22,27 +19,49 @@ class BotTank : Tank
         maxHealth = 100;
         currentObj = GameObject.Find("Bullet");
         bullet = currentObj.GetComponent<Bullet>();
-        currentObj = GameObject.Find("TankBarrelLeft");
-        tankBarrel = currentObj.GetComponent<PlayerTankBarrel>();
+        currentObj = GameObject.Find("TankBarrelRight");
+        tankBarrel = currentObj.GetComponent<BotTankBarrel>();
         currentObj = GameObject.Find("HealthBar");        
         CurrentHealth = maxHealth;
         Bar.setMaxHealth(maxHealth);//this is a change i made
-        currentObj = GameObject.Find("Health");
-        rand = new Random();
-        randNumber = rand.Next(1, 2);
-
-    }
+        currentObj = GameObject.Find("Health");                
+    }   
     private void Update()
     {
-        if (botsTurn)
+        if (botsTurnMove)
         {
+            GenerateRandomLeftorRightDirection();
             if (Sec <= 3)
-            { Sec += 1 * Time.deltaTime; print(Sec);
-                Move();
+            { 
+                Sec += 1 * Time.deltaTime;
+                Move();                
+            }
+            else
+            {
+                Sec = 0;
+                botsTurnMove = false;
+                botsTurnShoot = true;
             }
             
         }
+        if (botsTurnShoot)
+        {
+            botsTurnShoot = false;
+            if (Sec <= 3)
+            {
+                Sec += 1 * Time.deltaTime;
+                tankBarrel.RotateBarrel();                
+            }
+            else
+            {
+                Sec = 0;
+                botsTurnMove = false;
+            }
+            
+        }
+
     }
+ 
     public override void Die()
     {
         
@@ -54,7 +73,7 @@ class BotTank : Tank
             
             if (!bullet.isInMotion)
             {
-                directionTime = (randNumber == 1) ? (Vector3.left * Time.deltaTime) : (Vector3.right * Time.deltaTime);
+                directionTime = (GenerateRandomLeftorRightDirection() == 1) ? (Vector3.left * Time.deltaTime) : (Vector3.right * Time.deltaTime);
                 this.transform.Translate(directionTime);
             }
            

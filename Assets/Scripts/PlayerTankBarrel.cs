@@ -31,7 +31,7 @@ using UnityEngine;
             ExtendBarrel();
         }
     }
-    protected override void RotateBarrel()
+    public override void RotateBarrel()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {     
@@ -43,7 +43,7 @@ using UnityEngine;
             this.transform.Rotate(0, 0, Time.deltaTime*-50);
         }
     }
-    protected override void ExtendBarrel()
+    public override void ExtendBarrel()
     {
         
         if (Input.GetKey(KeyCode.UpArrow))
