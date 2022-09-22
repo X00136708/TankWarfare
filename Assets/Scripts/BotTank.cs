@@ -45,8 +45,7 @@ class BotTank : Tank
             
         }
         if (botsTurnShoot)
-        {
-            botsTurnShoot = false;
+        {            
             if (Sec <= 3)
             {
                 Sec += 1 * Time.deltaTime;
@@ -56,6 +55,7 @@ class BotTank : Tank
             {
                 Sec = 0;
                 botsTurnMove = false;
+                botsTurnShoot = false;
             }
             
         }

@@ -10,14 +10,17 @@ public class BotTankBarrel : TankBarrel
     {
         Random rand;
         float barrelDirection;
-        public override void ExtendBarrel()
+    private void Start()
+    {
+        rand = new Random();
+    }
+    public override void ExtendBarrel()
         {         
         
         }
 
         public override void RotateBarrel()
-        {
-            rand = new Random();
+        {            
             barrelDirection = (GenerateRandomLeftorRightDirection() == 1) ? (5000) : (-5000);
             this.transform.Rotate(0, 0, Time.deltaTime * barrelDirection);
         }

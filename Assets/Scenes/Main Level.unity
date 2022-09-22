@@ -739,7 +739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarObj: {fileID: 0}
   healthBar: {fileID: 341522663}
-  botsTurn: 0
+  botsTurnMove: 0
+  botsTurnShoot: 0
 --- !u!1 &310398678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,6 +1421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 597758882}
   - component: {fileID: 597758881}
+  - component: {fileID: 597758883}
   m_Layer: 0
   m_Name: TankBarrelRight
   m_TagString: Untagged
@@ -1495,6 +1497,19 @@ Transform:
   m_Father: {fileID: 272924371}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -4.141, y: 0, z: 0}
+--- !u!114 &597758883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597758880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0b660815f70e348a9113141f756966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankBarrelEulerAxisX: 0
 --- !u!1 &785961292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,7 +2510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarObj: {fileID: 0}
   healthBar: {fileID: 0}
-  botsTurn: 0
+  botsTurnMove: 0
+  botsTurnShoot: 0
 --- !u!4 &1275148880
 Transform:
   m_ObjectHideFlags: 0
