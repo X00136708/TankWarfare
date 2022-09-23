@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = System.Random;
 
 public abstract class Tank : GenericMethods
 {
     public Bullet bullet { get; set; }
     public GameObject healthBarObj;
-    public HealthBar healthBar;
-    public Random rand;
+    public HealthBar healthBar;    
     public int maxHealth { get; set; }
     public bool botsTurnMove;
     public bool botsTurnShoot;

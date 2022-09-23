@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using Random = System.Random;
 
 public class BotTankBarrel : TankBarrel
-    {
-        Random rand;
-        float barrelDirection;
+    {    
+    float barrelDirection;
     private void Start()
-    {
-        rand = new Random();
+    {        
     }
     public override void ExtendBarrel()
         {         

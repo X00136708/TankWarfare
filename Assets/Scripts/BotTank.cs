@@ -8,11 +8,11 @@ using UnityEngine;
 
 class BotTank : Tank
 {
-    GameObject currentObj;    
-    BotTankBarrel tankBarrel;    
+    GameObject currentObj;
+    BotTankBarrel tankBarrel;
     HealthBar Bar;//this is a change i made    
-    Vector3 directionTime;    
-    float Sec;
+    Vector3 directionTime;
+    float Sec;    
 
     private void Start()//not sure why this broke or how to fix it 
     {
@@ -21,70 +21,60 @@ class BotTank : Tank
         bullet = currentObj.GetComponent<Bullet>();
         currentObj = GameObject.Find("TankBarrelRight");
         tankBarrel = currentObj.GetComponent<BotTankBarrel>();
-        currentObj = GameObject.Find("HealthBar");        
+        currentObj = GameObject.Find("HealthBar");
         CurrentHealth = maxHealth;
-        Bar.setMaxHealth(maxHealth);//this is a change i made
-        currentObj = GameObject.Find("Health");                
-    }   
+        //Bar.setMaxHealth(maxHealth);//this is a change i made
+        currentObj = GameObject.Find("Health");        
+    }
     private void Update()
     {
         if (botsTurnMove)
-        {
-            GenerateRandomLeftorRightDirection();
-            if (Sec <= 3)
-            { 
-                Sec += 1 * Time.deltaTime;
-                Move();                
-            }
-            else
-            {
-                Sec = 0;
-                botsTurnMove = false;
-                botsTurnShoot = true;
-            }
-            
-        }
-        if (botsTurnShoot)
         {            
             if (Sec <= 3)
             {
                 Sec += 1 * Time.deltaTime;
-                tankBarrel.RotateBarrel();                
+                Move();
             }
             else
             {
                 Sec = 0;
                 botsTurnMove = false;
-                botsTurnShoot = false;
+                botsTurnShoot = true;                
             }
-            
+
+        }
+        if (botsTurnShoot)
+        {
+            tankBarrel.RotateBarrel();            
+            botsTurnMove = false;
+            botsTurnShoot = false;
         }
 
     }
- 
+
     public override void Die()
     {
-        
+
     }
 
     public override void Move()
-    {        
-        {                 
-            
+    {
+        {
+
             if (!bullet.isInMotion)
             {
                 directionTime = (GenerateRandomLeftorRightDirection() == 1) ? (Vector3.left * Time.deltaTime) : (Vector3.right * Time.deltaTime);
                 this.transform.Translate(directionTime);
             }
-           
-        }      
+
+        }
     }
 
     public override void Shoot()
     {
         throw new NotImplementedException();
     }
-   
-    
+
+
 }
 

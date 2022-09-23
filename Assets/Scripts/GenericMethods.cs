@@ -3,11 +3,10 @@ using UnityEngine;
 using Random = System.Random;
     public class GenericMethods : MonoBehaviour
 {
-        private Random rand;
+        public Random rand = new Random();
         private int randNumber;
         public int GenerateRandomLeftorRightDirection()
-        {
-            rand = new Random();
+        {            
             return randNumber = rand.Next(1, 2);
         }
 }
