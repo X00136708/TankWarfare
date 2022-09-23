@@ -66,5 +66,9 @@ public class PlayerTank : Tank
     {         
         Destroy(gameObject);
     }
+    public override void NewTurn()
+    {
+        
     }
+}
 

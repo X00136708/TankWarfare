@@ -12,7 +12,8 @@ class BotTank : Tank
     BotTankBarrel tankBarrel;
     HealthBar Bar;//this is a change i made    
     Vector3 directionTime;
-    float Sec;    
+    float Sec;
+    int localRandPerTurn;
 
     private void Start()//not sure why this broke or how to fix it 
     {
@@ -27,25 +28,25 @@ class BotTank : Tank
         currentObj = GameObject.Find("Health");        
     }
     private void Update()
+    {                
+
+    }
+    public override void NewTurn()
     {
-        if (botsTurnMove)
-        {            
-            if (Sec <= 3)
+        localRandPerTurn = GenerateRandomLeftorRightDirection();
+            while (Sec <= 3)
             {
                 Sec += 1 * Time.deltaTime;
                 Move();
-            }
-            else
-            {
+            }            
                 Sec = 0;
                 botsTurnMove = false;
-                botsTurnShoot = true;                
-            }
+                botsTurnShoot = true;            
 
-        }
+        
         if (botsTurnShoot)
         {
-            tankBarrel.RotateBarrel();            
+            tankBarrel.RotateBarrel();
             botsTurnMove = false;
             botsTurnShoot = false;
         }
@@ -59,11 +60,10 @@ class BotTank : Tank
 
     public override void Move()
     {
-        {
-
+        {            
             if (!bullet.isInMotion)
             {
-                directionTime = (GenerateRandomLeftorRightDirection() == 1) ? (Vector3.left * Time.deltaTime) : (Vector3.right * Time.deltaTime);
+                directionTime = (localRandPerTurn== 1) ? (Vector3.left * Time.deltaTime * 100) : (Vector3.right * Time.deltaTime * 100);
                 this.transform.Translate(directionTime);
             }
 

@@ -50,9 +50,10 @@ public abstract class Tank : GenericMethods
             }
             else if (collision.otherCollider.tag.Equals("BotTank"))
             {
-                botsTurnMove = true;
+                NewTurn();
             }
             TakeDamage(this.gameObject, bullet.damage);
         }
     }
+    public abstract void NewTurn();    
 }

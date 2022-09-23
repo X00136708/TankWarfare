@@ -7,6 +7,6 @@ using Random = System.Random;
         private int randNumber;
         public int GenerateRandomLeftorRightDirection()
         {            
-            return randNumber = rand.Next(1, 2);
+            return randNumber = rand.Next(1,2);
         }
 }
