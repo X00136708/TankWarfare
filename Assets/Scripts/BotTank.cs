@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor.Experimental.GraphView;
+using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 
 class BotTank : Tank
 {
     GameObject currentObj;
     BotTankBarrel tankBarrel;
-    HealthBar Bar;//this is a change i made    
-    Vector3 directionTime;
-    float Sec;
+    HealthBar Bar;//this is a change i made
     int localRandPerTurn;
 
     private void Start()//not sure why this broke or how to fix it 
@@ -26,24 +21,20 @@ class BotTank : Tank
         CurrentHealth = maxHealth;
         //Bar.setMaxHealth(maxHealth);//this is a change i made
         currentObj = GameObject.Find("Health");        
+        
     }
     private void Update()
     {                
 
     }
     public override void NewTurn()
-    {
+    {        
         localRandPerTurn = GenerateRandomLeftorRightDirection();
-            while (Sec <= 3)
-            {
-                Sec += 1 * Time.deltaTime;
-                Move();
-            }            
-                Sec = 0;
-                botsTurnMove = false;
-                botsTurnShoot = true;            
+        Move();
+        botsTurnMove = false;
+        botsTurnShoot = true;
 
-        
+
         if (botsTurnShoot)
         {
             tankBarrel.RotateBarrel();
@@ -52,23 +43,29 @@ class BotTank : Tank
         }
 
     }
+    public override void Move()
+    {
+        StartCoroutine(MoveOverSeconds(gameObject, new Vector3(0.0f, 0f, 0f), 3f));
+    }
+
+    public IEnumerator MoveOverSeconds(GameObject objectToMove, Vector3 end, float seconds)
+    {        
+        float elapsedTime = 0;
+        Vector3 startingPos = this.transform.position;
+        while (elapsedTime < seconds)
+        {
+            this.transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        this.transform.position = end;
+    }
+
 
     public override void Die()
     {
 
-    }
-
-    public override void Move()
-    {
-        {            
-            if (!bullet.isInMotion)
-            {
-                directionTime = (localRandPerTurn== 1) ? (Vector3.left * Time.deltaTime * 100) : (Vector3.right * Time.deltaTime * 100);
-                this.transform.Translate(directionTime);
-            }
-
-        }
-    }
+    }    
 
     public override void Shoot()
     {
